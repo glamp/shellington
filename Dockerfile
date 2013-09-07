@@ -9,4 +9,4 @@ ADD . node-sci
 WORKDIR /node-sci
 EXPOSE 3000
 ENTRYPOINT npm start
-
+PUBLISH 3000 as 80
