@@ -6,5 +6,7 @@ RUN apt-get update
 RUN apt-get -y install nodejs
 
 ADD . node-sci
-RUN cd node-sci; npm start;
+WORKDIR /node-sci
+EXPOSE 3000
+ENTRYPOINT npm start
 
