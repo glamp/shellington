@@ -5,8 +5,7 @@ RUN add-apt-repository ppa:chris-lea/node.js
 RUN apt-get update
 RUN apt-get -y install nodejs
 
-ADD . node-sci
-WORKDIR /node-sci
+ADD . /node-sci
 EXPOSE 3000
-ENTRYPOINT npm start
-PUBLISH 3000 as 80
+CMD cd /node-sci; npm start;
+
