@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Yhat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+    <script src="/javascripts/jconsole.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <style type="text/css">
+        /* The console container element */
+	    #console {
+	      position: absolute;
+	      width: 650px;
+	      height: 650px;
+	      background-color:black;
+	    }
+	    /* The inner console element. */
+	    .jqconsole {
+	        padding: 10px;
+	        font-size: 14px;
+	    }
+	    /* The cursor. */
+	    .jqconsole-cursor {
+	        background-color: gray;
+	    }
+	    /* The cursor color when the console looses focus. */
+	    .jqconsole-blurred .jqconsole-cursor {
+	        background-color: #666;
+	    }
+	    /* The current prompt text color */
+	    .jqconsole-prompt {
+	        color: #DEDEDE;
+	    }
+	    /* The command history */
+	    .jqconsole-old-prompt {
+	        color: #DEDEDE;
+	        font-weight: normal;
+	    }
+	    /* The text color when in input mode. */
+	    .jqconsole-input {
+	        color: #DEDEDE;
+	    }
+	    /* Previously entered input. */
+	    .jqconsole-old-input {
+	        color: #DEDEDE;
+	        font-weight: normal;
+	    }
+	    /* The text color of the output. */
+	    .jqconsole-output {
+	        color: white;
+    	}
+		#parent{
+		    overflow:hidden;
+		    position:relative;
+		}
+		.left{
+		    padding-right:10px;
+		}
+		.right{
+		    width:50px;
+		    position:absolute;
+		    height:100%;
+		    top:0;
+		    right:0;
+		}
+		body{
+		    margin:0;
+		    padding:0;
+		}
+
+    </style>
+  </head>
+
+
+  <body>
+  	<div id="parent" style="height: 600px;">
+	  	<div id="console"></div>
+  		<button id="exec-code">Send</button>
+  	</div>
+    <script>
+      $(function () {
+      	jqconsole = $('#console').jqconsole('Hi\n', '>>> ');
+        
+        var startPrompt = function () {
+          // Start the prompt with history enabled.
+          jqconsole.Prompt(true, function (input) {
+          	$.post("/", {"code": input}, function(d) {
+          		// Output input with the class jqconsole-output.
+	            jqconsole.Write(d.result + '\n', 'jqconsole-output');
+          	})
+            
+            // Restart the prompt.
+            startPrompt();
+          });
+        };
+        startPrompt();
+
+        $("#exec-code").click(function(e) {
+        	e.preventDefault();
+        	var code = editor.session.getTextRange(editor.getSelectionRange()).trim();
+        	console.log(code);
+        	jqconsole.Write(code + "\n\n", 'jqconsole-input');
+        	return false;
+        })
+      });
+    </script>
+	
+	</body>
+</html>
