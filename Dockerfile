@@ -5,7 +5,6 @@ RUN add-apt-repository ppa:chris-lea/node.js
 RUN apt-get update
 RUN apt-get -y install nodejs
 
-RUN git clone git@github.com:glamp/node-sci.git
+ADD . node-sci
 RUN cd node-sci; npm start;
-
 
