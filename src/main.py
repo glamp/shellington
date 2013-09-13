@@ -21,7 +21,7 @@ if __name__=="__main__":
                 exec(code)
             else:
                 try:
-                    print eval(code)
+                    print repr(eval(code))
                 except:
                     exec(code)
         except Exception, e:

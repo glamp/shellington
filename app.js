@@ -43,6 +43,7 @@ child.stdout.on("data", function(data) {
     data = data.toString().split('\n')[0];
     data = JSON.parse(data);
     if (_.has(completionCallbacks, data._id)) {
+        console.log(data);
         completionCallbacks[data._id](data);
         delete completionCallbacks[data._id];
     } else {
