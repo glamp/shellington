@@ -7,5 +7,4 @@ RUN apt-get -y install nodejs
 
 ADD . /node-sci
 EXPOSE 3000
-#RUN cd node-sci; node app.js
-
+RUN cd node-sci; node app.js
