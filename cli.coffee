@@ -5,7 +5,7 @@ server = require './server'
 doc = """
 
 Usage:
-    node2sci [options] <lang>
+    node2sci [options] <root> <lang>
 
 Options:
     --help
@@ -20,4 +20,6 @@ Example:
 {docopt} = require 'docopt', version: package_json.version
 options = docopt doc
 
-server options["<lang>"] || "python"
+#root = __dirname
+
+server options["<root>"], options["<lang>"] || "python"

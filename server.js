@@ -13,7 +13,8 @@ var express = require('express')
   , child_process = require("child_process")
   , spawn = child_process.spawn;
 
-module.exports = function(lang) {
+module.exports = function(root, lang) {
+    console.log("running in root: " + root);
     lang = lang.toLowerCase();
     var app = express();
 
