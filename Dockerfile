@@ -6,6 +6,7 @@ RUN apt-get update
 RUN apt-get -y install nodejs
 
 # install scipy
+RUN apt-get -y install python-pip
 
 # install R
 RUN apt-get -y install r-base
@@ -17,5 +18,5 @@ RUN echo "r <- getOption('repos'); r['CRAN'] <- 'http://cran.us.r-project.org'; 
 ADD . /node-sci
 EXPOSE 3000
 
-#CMD cd node-sci; node app.js;
+CMD cd node-sci; npm install -g
 
