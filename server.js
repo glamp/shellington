@@ -36,9 +36,9 @@ module.exports = function(root, lang) {
     var cmd = "";
     console.log("staring with language: " + lang);
     if (lang=="python") {
-        cmd = "src/main.py";
+        cmd = path.join(root, "src/main.py");
     } else {
-        cmd = "src/rmain.py";
+        cmd = path.join(root, "src/rmain.py");
     }
     child = spawn("python", [cmd]);
     child.stdin.write(JSON.stringify({"code": "\n"}) + "\n");
