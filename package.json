@@ -1,14 +1,20 @@
 {
-  "name": "application-name",
+  "name": "node-sci",
+  "description": "A scientific wrapper for node to Python and R.",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node app.js"
   },
+  "bin": {
+    "node2sci": "./bin/node2sci"
+  },
   "dependencies": {
     "express": "3.3.4",
     "ejs": "*",
     "uuid": "~1.4.1",
-    "underscore": "~1.5.1"
+    "underscore": "~1.5.1",
+    "coffee-script": "~1.6.3",
+    "docopt": "~0.4.0"
   }
 }
