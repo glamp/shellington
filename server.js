@@ -46,7 +46,6 @@ module.exports = function(root, lang) {
     sendToProcessServer = function(data) {
         var data = JSON.stringify(data);
         data = data.replace(/\n/g, "\\n")
-        console.log(data);
         child.stdin.write(data + "\n");
     };
 
@@ -54,9 +53,13 @@ module.exports = function(root, lang) {
         data = data.toString().split('\n')[0];
         console.log(data)
         data = JSON.parse(data);
+<<<<<<< HEAD
         if (_.has(data, "result")) {
             data.result = data.result.replace(/\\n/g, '\n');
         }
+=======
+        //data.result = data.result.replace(/\\n/g, '\n');
+>>>>>>> 5ed9c62657294ebd3d3b815d72dad8271ac2fad8
         if (_.has(completionCallbacks, data._id)) {
             console.log(data);
             completionCallbacks[data._id](data);
@@ -74,8 +77,6 @@ module.exports = function(root, lang) {
         var code = req.body.code
           , data = { code: code, _id: uuid.v4() };
         
-        console.log(data);
-
         completionCallbacks[data._id] = function(data) {
           res.json(data);
         }
