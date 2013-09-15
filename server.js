@@ -46,6 +46,7 @@ module.exports = function(root, lang) {
     sendToProcessServer = function(data) {
         var data = JSON.stringify(data);
         data = data.replace(/\n/g, "\\n")
+        console.log(data);
         child.stdin.write(data + "\n");
     };
 
