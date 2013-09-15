@@ -46,13 +46,13 @@ module.exports = function(root, lang) {
     sendToProcessServer = function(data) {
         var data = JSON.stringify(data);
         data = data.replace(/\n/g, "\\n")
-        console.log(data);
         child.stdin.write(data + "\n");
     };
 
     child.stdout.on("data", function(data) {
         data = data.toString().split('\n')[0];
         data = JSON.parse(data);
+        //data.result = data.result.replace(/\\n/g, '\n');
         if (_.has(completionCallbacks, data._id)) {
             console.log(data);
             completionCallbacks[data._id](data);
@@ -70,8 +70,6 @@ module.exports = function(root, lang) {
         var code = req.body.code
           , data = { code: code, _id: uuid.v4() };
         
-        console.log(data);
-
         completionCallbacks[data._id] = function(data) {
           res.json(data);
         }
