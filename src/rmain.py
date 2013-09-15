@@ -33,14 +33,11 @@ if __name__=="__main__":
         except Exception, e:
             print str(e)
         sys.stdout = sys.__stdout__
-<<<<<<< HEAD
         result = codeOut.getvalue()
         #TODO: need to handle non-serializable objects
         data["result"] = result
-=======
-        data["result"] = codeOut.getvalue()
+        #TODO: figure out what's going on with \n
         data["result"] = data["result"].replace("\n", "\\n")
->>>>>>> 5ed9c62657294ebd3d3b815d72dad8271ac2fad8
         sys.stdout.write(json.dumps(data) + "\n")
         sys.stdout.flush()
  
