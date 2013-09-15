@@ -25,6 +25,7 @@ if __name__=="__main__":
             print str(e)
         sys.stdout = sys.__stdout__
         data["result"] = codeOut.getvalue()
+        data["result"] = data["result"].replace("\n", "\\n")
         sys.stdout.write(json.dumps(data) + "\n")
         sys.stdout.flush()
  
