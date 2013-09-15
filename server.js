@@ -44,7 +44,9 @@ module.exports = function(root, lang) {
     child.stdin.write(JSON.stringify({"code": "\n"}) + "\n");
 
     sendToProcessServer = function(data) {
-        child.stdin.write(JSON.stringify(data) + "\n");
+        var data = JSON.stringify(data);
+        data = data.replace(/\n/g, "\\n")
+        child.stdin.write(data + "\n");
     };
 
     child.stdout.on("data", function(data) {
