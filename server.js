@@ -52,7 +52,11 @@ module.exports = function(root, lang) {
 
     child.stdout.on("data", function(data) {
         data = data.toString().split('\n')[0];
+        console.log(data)
         data = JSON.parse(data);
+        if (_.has(data, "result")) {
+            data.result = data.result.replace(/\\n/g, '\n');
+        }
         if (_.has(completionCallbacks, data._id)) {
             console.log(data);
             completionCallbacks[data._id](data);

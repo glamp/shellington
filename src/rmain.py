@@ -3,6 +3,14 @@ import sys
 import json
 import StringIO
 
+
+def is_dumpable(obj):
+    try:
+        json.dumps(obj)
+        return True
+    except:
+        return False
+
 if __name__=="__main__":
     line = sys.stdin.readline()
     while line:
@@ -24,7 +32,9 @@ if __name__=="__main__":
         except Exception, e:
             print str(e)
         sys.stdout = sys.__stdout__
-        data["result"] = codeOut.getvalue()
+        result = codeOut.getvalue()
+        #TODO: need to handle non-serializable objects
+        data["result"] = result
         sys.stdout.write(json.dumps(data) + "\n")
         sys.stdout.flush()
  
