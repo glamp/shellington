@@ -1,7 +1,7 @@
 {
   "name": "node-sci",
   "description": "A scientific wrapper for node to Python and R.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "start": "node app.js"
