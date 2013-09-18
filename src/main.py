@@ -1,6 +1,6 @@
 import sys
-#from pandasjson import pandasjson as json
-import json
+import pandasjson as json
+#import json
 import StringIO
 
 if __name__=="__main__":
@@ -26,10 +26,14 @@ if __name__=="__main__":
                 except:
                     exec(code)
         except Exception, e:
-            print str(e)
+            pass
+
         sys.stdout = sys.__stdout__
         data["result"] = codeOut.getvalue()
         data["result"] = data["result"].replace("\n", "\\n")
         sys.stdout.write(json.dumps(data) + "\n")
         sys.stdout.flush()
+
+        with open("log.txt", "wb") as f:
+            f.write(json.dumps(data) + "\n")
  

@@ -48,25 +48,25 @@ module.exports = function(root, lang) {
         data = data.replace(/\n/g, "\\n")
         child.stdin.write(data + "\n");
     };
-
+    
+    var result = "";
     child.stdout.on("data", function(data) {
-        data = data.toString().split('\n')[0];
-        console.log(data)
-        data = JSON.parse(data);
-<<<<<<< HEAD
-        if (_.has(data, "result")) {
-            data.result = data.result.replace(/\\n/g, '\n');
-        }
-=======
-        //data.result = data.result.replace(/\\n/g, '\n');
->>>>>>> 5ed9c62657294ebd3d3b815d72dad8271ac2fad8
-        if (_.has(completionCallbacks, data._id)) {
-            console.log(data);
-            completionCallbacks[data._id](data);
-            delete completionCallbacks[data._id];
+        data = data.toString().split('\n');
+        if (data.length!=2) {
+            result += data[0];
         } else {
-            console.log("no _id");
-        }
+            data = result + data[0];
+            result = "";
+            data = JSON.parse(data);
+            if (_.has(data, "result")) {
+                data.result = data.result.replace(/\\n/g, '\n');
+            }
+            //data.result = data.result.replace(/\\n/g, '\n');
+            if (_.has(completionCallbacks, data._id)) {
+                completionCallbacks[data._id](data);
+                delete completionCallbacks[data._id];
+            }
+        } 
     });
 
     completionCallbacks = {};
@@ -76,9 +76,8 @@ module.exports = function(root, lang) {
     app.post('/', function(req, res) {
         var code = req.body.code
           , data = { code: code, _id: uuid.v4() };
-        
         completionCallbacks[data._id] = function(data) {
-          res.json(data);
+            res.json(data);
         }
         sendToProcessServer(data);
     });
