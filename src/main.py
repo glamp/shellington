@@ -34,6 +34,3 @@ if __name__=="__main__":
         sys.stdout.write(json.dumps(data) + "\n")
         sys.stdout.flush()
 
-        with open("log.txt", "wb") as f:
-            f.write(json.dumps(data) + "\n")
- 
