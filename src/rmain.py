@@ -1,4 +1,4 @@
-from rpy2.robjects import (
+from rpy2.robjects import r
 from rpy2.robjects.vectors import DataFrame
 import pandas.rpy.common as com
 import sys
