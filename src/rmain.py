@@ -1,8 +1,8 @@
-from rpy2.robjects import R
+from rpy2.robjects import (
 from rpy2.robjects.vectors import DataFrame
 import pandas.rpy.common as com
 import sys
-import json
+import pandasjson as json
 import StringIO
 
 
@@ -28,9 +28,9 @@ if __name__=="__main__":
         try:
             code = data["code"]
             if code.startswith("print"):
-                R(code)
+                r(code)
             else:
-                print R(code)
+                print r(code)
         except Exception, e:
             print str(e)
         sys.stdout = sys.__stdout__

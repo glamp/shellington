@@ -1,5 +1,5 @@
 import sys
-import json
+import pandasjson as json
 import StringIO
 
 if __name__=="__main__":
