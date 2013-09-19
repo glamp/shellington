@@ -1,4 +1,6 @@
-from rpy2.robjects import r
+from rpy2.robjects import R
+from rpy2.robjects.vectors import DataFrame
+import pandas.rpy.common as com
 import sys
 import json
 import StringIO
@@ -26,16 +28,16 @@ if __name__=="__main__":
         try:
             code = data["code"]
             if code.startswith("print"):
-                r(code)
+                R(code)
             else:
-                print r(code)
+                print R(code)
         except Exception, e:
             print str(e)
         sys.stdout = sys.__stdout__
         result = codeOut.getvalue()
-        #TODO: need to handle non-serializable objects
+        if isinstance(result, DataFrame):
+            result = com.convert_robj(result)
         data["result"] = result
-        #TODO: figure out what's going on with \n
         data["result"] = data["result"].replace("\n", "\\n")
         sys.stdout.write(json.dumps(data) + "\n")
         sys.stdout.flush()
