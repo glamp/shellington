@@ -27,5 +27,5 @@ RUN apt-get -y install libcurl4-openssl-dev
 ADD . /node-sci
 EXPOSE 3000
 
-RUN cd /node-sci; npm install -g
+RUN cd /node-sci; npm install -g;
 
