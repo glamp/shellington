@@ -35,8 +35,8 @@ if __name__=="__main__":
             print str(e)
         sys.stdout = sys.__stdout__
         result = codeOut.getvalue()
-        if isinstance(result, DataFrame):
-            result = com.convert_robj(result)
+#        if isinstance(result, DataFrame):
+        result = com.convert_robj(result)
         data["result"] = result
         data["result"] = data["result"].replace("\n", "\\n")
         sys.stdout.write(json.dumps(data) + "\n")
