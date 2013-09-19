@@ -34,7 +34,6 @@ module.exports = function(root, lang) {
       app.use(express.errorHandler());
     }
     var cmd = "";
-    console.log("staring with language: " + lang);
     if (lang=="python") {
         cmd = path.join(root, "src/main.py");
     } else {
@@ -52,6 +51,7 @@ module.exports = function(root, lang) {
     var result = "";
     child.stdout.on("data", function(data) {
         data = data.toString().split('\n');
+        console.log(data);
         if (data.length!=2) {
             result += data[0];
         } else {
@@ -61,7 +61,6 @@ module.exports = function(root, lang) {
             if (_.has(data, "result")) {
                 data.result = data.result.replace(/\\n/g, '\n');
             }
-            //data.result = data.result.replace(/\\n/g, '\n');
             if (_.has(completionCallbacks, data._id)) {
                 completionCallbacks[data._id](data);
                 delete completionCallbacks[data._id];
