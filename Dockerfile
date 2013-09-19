@@ -13,6 +13,7 @@ RUN apt-get install -y python-numpy
 RUN apt-get install -y python-scipy
 RUN pip install -U scikit-learn
 RUN apt-get install -y python-pandas
+RUN pip install -U pandas
 RUN easy_install statsmodels
 RUN pip install -U yhat
 
