@@ -1,10 +1,12 @@
 import sys
+from IPython.core.interactiveshell import InteractiveShell
 import pandasjson as json
 import StringIO
 
 if __name__=="__main__":
-
+    mode = "ipython"
     line = sys.stdin.readline()
+    shell = InteractiveShell()
     while line:
         # explicitly write to stdout
         sys.stdout.write(line)
@@ -17,13 +19,19 @@ if __name__=="__main__":
         sys.stdout = codeOut
         try:
             code = data["code"]
-            if code.startswith("print"):
-                exec(code)
+            if data.get("autocomplete")==True:
+                _, completions = shell.complete(code)
+                print json.dumps(completions)
+            elif code.startswith("print"):
+                #exec(code)
+                shell.ex(code)
             else:
                 try:
-                    print repr(eval(code))
+                    #print repr(eval(code))
+                    print repr(shell.ev(code))
                 except:
-                    exec(code)
+                    #exec(code)
+                    shell.ex(code)
         except Exception, e:
             pass
 

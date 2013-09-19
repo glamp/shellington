@@ -73,7 +73,9 @@ module.exports = function(root, lang) {
     });
     app.post('/', function(req, res) {
         var code = req.body.code
-          , data = { code: code, _id: uuid.v4() };
+            autocomplete = req.body.autocomplete || false
+          , data = { code: code, _id: uuid.v4(), autocomplete: autocomplete };
+        
         completionCallbacks[data._id] = function(data) {
             res.json(data);
         }
