@@ -51,8 +51,7 @@ module.exports = function(root, lang) {
     var result = "";
     child.stdout.on("data", function(data) {
         data = data.toString().split('\n');
-        console.log(data);
-        if (data.length!=2) {
+        if (data.length < 2) {
             result += data[0];
         } else {
             data = result + data[0];
