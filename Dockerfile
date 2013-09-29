@@ -13,7 +13,7 @@ RUN apt-get install -y python-numpy
 RUN apt-get install -y python-scipy
 RUN pip install -U scikit-learn
 RUN apt-get install -y python-pandas
-RUN pip install -U pandas
+#RUN pip install -U pandas
 RUN easy_install statsmodels
 RUN pip install -U yhat
 
@@ -28,6 +28,9 @@ RUN apt-get -y install libcurl4-openssl-dev
 # install ruby
 RUN apt-get -y install ruby1.9.3
 RUN gem install json
+
+# install Ipython
+RUN pip install ipython
 
 ADD . /node-sci
 # install pandasjson
