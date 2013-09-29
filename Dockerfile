@@ -25,6 +25,10 @@ RUN apt-get -y install libcurl4-openssl-dev
 #setup R configs
 #RUN echo "r <- getOption('repos'); r['CRAN'] <- 'http://cran.us.r-project.org'; options(repos = r);" > ~/.Rprofile
 
+# install ruby
+RUN apt-get -y install ruby1.9.3
+RUN gem install json
+
 ADD . /node-sci
 # install pandasjson
 RUN cd node-sci/lib/; pip install pandasjson/
