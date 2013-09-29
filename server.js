@@ -33,14 +33,19 @@ module.exports = function(root, lang) {
     if ('development' == app.get('env')) {
       app.use(express.errorHandler());
     }
-    var cmd = "";
+    var commandArgs = ""
+      , command = "python";
     if (lang=="python") {
-        cmd = path.join(root, "src/main.py");
+        commandArgs = path.join(root, "src/main.py");
+    } else if (lang=="r") {
+        commandArgs = path.join(root, "src/rmain.py");
     } else {
-        cmd = path.join(root, "src/rmain.py");
+        commandArgs = path.join(root, "src/rubymain.rb");
+        command = "ruby";
     }
-    child = spawn("python", [cmd]);
-    child.stdin.write(JSON.stringify({"code": "\n"}) + "\n");
+    console.log(command + " " + commandArgs);
+    child = spawn(command, [commandArgs]);
+    child.stdin.write(JSON.stringify({"code": ""}) + "\n");
 
     sendToProcessServer = function(data) {
         var data = JSON.stringify(data);
