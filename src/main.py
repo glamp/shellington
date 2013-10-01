@@ -24,6 +24,7 @@ if __name__=="__main__":
                 print json.dumps(completions)
             elif code.startswith("print"):
                 #exec(code)
+                # doesn't work w/ print; needs print()
                 shell.ex(code)
             else:
                 try:
