@@ -9,6 +9,7 @@ var express = require('express')
   , uuid = require('uuid')
   , delim = uuid.v4()
   , _ = require('underscore')
+  , WebSocketServer = require('ws').Server
   , child_process = require("child_process")
   , spawn = child_process.spawn;
 
@@ -82,8 +83,19 @@ module.exports = function(lang) {
     }
     sendToProcessServer(data);
   });
-
-  http.createServer(app).listen(app.get('port'), function(){
+  
+  var server = http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
+  });
+
+  var wss = new WebSocketServer({server: server});
+  wss.on("connection", function (ws) {
+    ws.on("message", function(data) {
+      data = JSON.parse(data);
+      completionCallbacks[data._id] = function(data) {
+        res.json(data);
+      }
+      sendToProcessServer(data);
+    });
   });
 }
