@@ -7,7 +7,5 @@ RUN apt-get -y install nodejs
 
 ADD . /shellington
 
-EXPOSE 3000
-
 RUN cd /shellington; npm install -g;
 
