@@ -35,12 +35,15 @@ module.exports = function(lang) {
   var commandArgs = ""
     , command = "python";
   if (lang=="python") {
-      commandArgs = path.join(__dirname, "../scripts/main.py");
+    commandArgs = path.join(__dirname, "../scripts/main.py");
   } else if (lang=="r") {
-      commandArgs = path.join(__dirname, "../scripts/rmain.py");
-  } else {
-      commandArgs = path.join(__dirname, "../scripts/rubymain.rb");
-      command = "ruby";
+    commandArgs = path.join(__dirname, "../scripts/rmain.py");
+  } else if (lang=="ruby") {
+    commandArgs = path.join(__dirname, "../scripts/rubymain.rb");
+    command = "ruby";
+  } else if (lang=="bash") {
+    commandArgs = "";
+    command = "bash";
   }
   console.log(command + " " + commandArgs + " " + delim);
   child = spawn(command, [commandArgs, delim]);
