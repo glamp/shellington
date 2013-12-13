@@ -73,6 +73,10 @@ module.exports = function(lang) {
 
   completionCallbacks = {};
 
+  app.get('/', function(req, res) {
+    res.send({ status: "up" });
+  });
+
   app.post('/', function(req, res) {
     var code = req.body.code
       , autocomplete = req.body.autocomplete || false
