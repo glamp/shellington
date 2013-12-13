@@ -90,10 +90,12 @@ module.exports = function(lang) {
 
   var wss = new WebSocketServer({server: server});
   wss.on("connection", function (ws) {
+    console.log("new client connection!");
     ws.on("message", function(data) {
       data = JSON.parse(data);
+      data._id = uuid.v4();
       completionCallbacks[data._id] = function(data) {
-        res.json(data);
+        ws.send(JSON.stringify(data));
       }
       sendToProcessServer(data);
     });
