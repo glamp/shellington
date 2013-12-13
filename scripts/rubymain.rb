@@ -2,12 +2,14 @@ require 'rubygems'
 require 'json'
 require 'stringio'
 
-delim = ARGV[1]
+delim = ARGV[0]
 context = binding
+
+STDERR.write("Delimiter is: " + delim)
 
 while line = STDIN.gets
   line = JSON.parse(line.strip())
-  code = line["code"]
+  code = line["code"] || ""
   #actualstdout, $stdout = $stdout, StringIO.new
   begin
     #result = eval(code) || ""
