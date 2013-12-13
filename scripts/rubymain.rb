@@ -2,6 +2,7 @@ require 'rubygems'
 require 'json'
 require 'stringio'
 
+delim = ARGV[1]
 context = binding
 
 while line = STDIN.gets
@@ -20,7 +21,7 @@ while line = STDIN.gets
   $stdout = STDOUT
   line["result"] = result.read
 
-  STDOUT.write(JSON.dump(line) + "\n")
+  STDOUT.write(JSON.dump(line) + delim)
   STDOUT.flush
 end
 
