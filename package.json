@@ -4,10 +4,10 @@
   "version": "0.0.2",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "coffee ./src/cli.coffee"
   },
   "bin": {
-    "node2sci": "./bin/node2sci"
+    "shellington": "./bin/shellington"
   },
   "dependencies": {
     "express": "3.3.4",
