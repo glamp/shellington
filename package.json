@@ -7,7 +7,8 @@
     "start": "coffee ./src/cli.coffee"
   },
   "bin": {
-    "shellington": "./bin/shellington"
+    "shellington": "./bin/shellington",
+    "jsonfiy": "./scripts/jsonify"
   },
   "dependencies": {
     "express": "3.3.4",
