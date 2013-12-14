@@ -41,12 +41,17 @@ module.exports = function(lang) {
   } else if (lang=="ruby") {
     commandArgs = path.join(__dirname, "../scripts/rubymain.rb");
     command = "ruby";
-  } else if (lang=="bash") {
+  } else if (lang=="bashscript") {
     commandArgs = "";
-    command = "bash";
+    command = path.join(__dirname, "../scripts/bashmain.sh");
   }
   console.log(command + " " + commandArgs + " " + delim);
-  child = spawn(command, [commandArgs, delim]);
+
+  if (lang=="bashscript") {
+    child = spawn(command);
+  } else {
+    child = spawn(command, [commandArgs, delim]);
+  }
   child.stdin.write(JSON.stringify({"code": ""}) + "\n");
 
   sendToProcessServer = function(data) {
