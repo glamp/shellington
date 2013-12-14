@@ -33,11 +33,13 @@ module.exports = function(lang) {
     app.use(express.errorHandler());
   }
   var commandArgs = ""
-    , command = "python";
+    , command = "";
   if (lang=="python") {
     commandArgs = path.join(__dirname, "../scripts/main.py");
+    command = "python";
   } else if (lang=="r") {
-    commandArgs = path.join(__dirname, "../scripts/rmain.py");
+    commandArgs = path.join(__dirname, "../scripts/rmain.r");
+    command = "Rscript";
   } else if (lang=="ruby") {
     commandArgs = path.join(__dirname, "../scripts/rubymain.rb");
     command = "ruby";

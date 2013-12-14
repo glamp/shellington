@@ -8,7 +8,7 @@
   },
   "bin": {
     "shellington": "./bin/shellington",
-    "jsonfiy": "./scripts/jsonify"
+    "jsonify": "./scripts/jsonify"
   },
   "dependencies": {
     "express": "3.3.4",
