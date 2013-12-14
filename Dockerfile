@@ -11,6 +11,9 @@ RUN apt-get -y install nodejs
 RUN apt-get -y install ruby1.9.3
 RUN gem install json
 
+# jq
+RUN apt-get -y install jq
+
 ADD . /shellington
 
 RUN cd /shellington; npm install -g;
