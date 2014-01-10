@@ -6,6 +6,7 @@ node app for embedding in browser shells for different languages
 <img src="http://fc03.deviantart.net/fs11/i/2006/166/9/4/Monocle_Man_by_SenorDoom.jpg">
 *a picture of Lord Shellington himself*
 
+## Running locally via the API
 ### run the app
 ```bash
 # install node.js, python, ruby, etc.
@@ -17,7 +18,7 @@ $ shellington python
 # Express server listening on port 3000
 ```
 
-### run via the API
+### calling with CURL
 you can execute code via the REST API and it will talk to the python/ruby/bash/etc. subprocess
 ```bash
 $ curl -X POST -H "Content-Type: application/json" -d '{"code": "x=1"}' localhost:3000/
@@ -42,7 +43,7 @@ $ curl -X POST -H "Content-Type: application/json" -d '{"code": "range(10)"}' lo
   "_id": "5e4308a0-63b3-4fc4-9637-c71c8f9a418e"
 }
 ```
-
+## Running as a container
 ### build the container
 this is the container that will be called from other apps
 
