@@ -1,6 +1,6 @@
 {
   "name": "shellington",
-  "description": "A scientific wrapper for node to Python and R.",
+  "description": "An API for embedding terminal shells in your browser",
   "version": "0.0.2",
   "private": true,
   "scripts": {
