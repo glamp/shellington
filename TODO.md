@@ -5,3 +5,4 @@
 - add javascript interpreter
 - fix .gitignore
 - replace *Express server listening on port 3000* with something more humorous
+- make scripts more consistently named
