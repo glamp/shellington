@@ -1,10 +1,18 @@
-shellington
+`shellington`
 =============
 
 <img src="http://fc03.deviantart.net/fs11/i/2006/166/9/4/Monocle_Man_by_SenorDoom.jpg">
 
-node app sits on a server w/ a docker image for `shellington`
-app has 1 page - terminal w/ Yhat interactive tutorial
+node app for embedding in browser shells for different languages
+
+### build the container
+this is the container that will be called from other apps
+
+```bash
+git clone git@github.com:glamp/shellington.git
+cd shellington
+sudo docker build -t shellington .
+```
 
 ### `on('connection')`
 when a user lands on the page, create a new docker for that user
