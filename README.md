@@ -63,6 +63,13 @@ cd shellington
 sudo docker build -t shellington .
 ```
 
+### run the container
+actually running with docker
+```bash
+lang="python" # ruby, r, bash, etc.
+sudo docker run -d -t shellington shellington "${lang}"
+```
+
 ### `on('connection')`
 when a user lands on the page, create a new docker for that user
 and run node-sci
