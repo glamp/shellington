@@ -3,7 +3,7 @@ shellington
 node app for embedding in browser shells for different languages
 
 
-<img src="http://fc03.deviantart.net/fs11/i/2006/166/9/4/Monocle_Man_by_SenorDoom.jpg">
+<img src="public/img/lord-shellington.jpg">
 *a picture of Lord Shellington himself*
 
 ## Running locally via the API
@@ -20,6 +20,8 @@ $ shellington python
 
 ## in browser
 open localhost:3000 in your terminal
+
+<img src="public/img/demo.png">
 
 ### calling with CURL
 you can execute code via the REST API and it will talk to the python/ruby/bash/etc. subprocess
@@ -46,6 +48,11 @@ $ curl -X POST -H "Content-Type: application/json" -d '{"code": "range(10)"}' lo
   "_id": "5e4308a0-63b3-4fc4-9637-c71c8f9a418e"
 }
 ```
+
+### calling with Web Sockets
+*TODO*
+
+
 ## Running as a container
 ### build the container
 this is the container that will be called from other apps
