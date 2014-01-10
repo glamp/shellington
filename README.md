@@ -18,6 +18,9 @@ $ shellington python
 # Express server listening on port 3000
 ```
 
+## in browser
+open localhost:3000 in your terminal
+
 ### calling with CURL
 you can execute code via the REST API and it will talk to the python/ruby/bash/etc. subprocess
 ```bash
