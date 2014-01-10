@@ -1,7 +1,8 @@
 `shellington`
 =============
 
-<img src="http://fc03.deviantart.net/fs11/i/2006/166/9/4/Monocle_Man_by_SenorDoom.jpg">
+<img src="http://fc03.deviantart.net/fs11/i/2006/166/9/4/Monocle_Man_by_SenorDoom.jpg" style="height: 300px">
+*a picture of Lord Shellington himself*
 
 node app for embedding in browser shells for different languages
 
