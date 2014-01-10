@@ -1,26 +1,31 @@
-node-sci
-========
+shellington
+=============
 
+<img src="http://fc03.deviantart.net/fs11/i/2006/166/9/4/Monocle_Man_by_SenorDoom.jpg">
 
-node app sits on a server w/ a docker image for "node-sci"
+node app sits on a server w/ a docker image for `shellington`
 app has 1 page - terminal w/ Yhat interactive tutorial
 
+### `on('connection')`
 when a user lands on the page, create a new docker for that user
 and run node-sci
-on('connection')
--> create new docker
--> assingn to tie user/docker
 
+- create new docker
+- assingn to tie user/docker
+
+### `on('command')`
 when the user inputs a command, execute it in their docker and display
 it in the app
-on('command')
--> post the user's docker container (will need some sort of lookup to
-the container)
--> curl -X POST -H "Content-Type: andpplication/json" -d '{"code":
-"{USERS_CODE}"}' http://localhost:{USERS_CONTAINER_PORT}
--> display it in the "terminal"
 
+- post the user's docker container (will need some sort of lookup to
+the container)
+- curl -X POST -H "Content-Type: andpplication/json" -d '{"code":
+"{USERS_CODE}"}' http://localhost:{USERS_CONTAINER_PORT}
+- display it in the "terminal"
+
+
+### `on('disconnect')`
 when the user disconnects, kill the Dockerfile image
-on('disconnect')
--> sudo docker kill {USERS_CONTAINER_ID}
+
+- sudo docker kill {USERS_CONTAINER_ID}
 
