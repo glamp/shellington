@@ -20,4 +20,5 @@ Example:
 {docopt} = require 'docopt', version: package_json.version
 options = docopt doc
 
+# defaults to python
 server options["<lang>"] || "python"
