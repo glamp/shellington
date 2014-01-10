@@ -1,10 +1,47 @@
-`shellington`
+shellington
 =============
+node app for embedding in browser shells for different languages
 
-<img src="http://fc03.deviantart.net/fs11/i/2006/166/9/4/Monocle_Man_by_SenorDoom.jpg" style="height: 300px">
+
+<img src="http://fc03.deviantart.net/fs11/i/2006/166/9/4/Monocle_Man_by_SenorDoom.jpg">
 *a picture of Lord Shellington himself*
 
-node app for embedding in browser shells for different languages
+### run the app
+```bash
+# install node.js, python, ruby, etc.
+$ git clone git@github.com:glamp/shellington.git
+$ cd shellington
+$ npm install -g
+$ shellington python
+# python /Users/glamp/repos/yhat/prototypes/pystudio/shellington/scripts/main.py c5c20a78-cd70-43aa-b396-552286e22621
+# Express server listening on port 3000
+```
+
+### run via the API
+you can execute code via the REST API and it will talk to the python/ruby/bash/etc. subprocess
+```bash
+$ curl -X POST -H "Content-Type: application/json" -d '{"code": "x=1"}' localhost:3000/
+{
+  "autocomplete": false,
+  "code": "x=1",
+  "result": "",
+  "_id": "d8caa768-7262-44ed-b27b-703c12cc7885"
+}
+$ curl -X POST -H "Content-Type: application/json" -d '{"code": "x"}' localhost:3000/
+{
+  "autocomplete": false,
+  "code": "x",
+  "result": "1\n",
+  "_id": "99161acc-910a-4e58-b48a-530d996c216d"
+}
+$ curl -X POST -H "Content-Type: application/json" -d '{"code": "range(10)"}' localhost:3000/
+{
+  "autocomplete": false,
+  "code": "range(10)",
+  "result": "[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n",
+  "_id": "5e4308a0-63b3-4fc4-9637-c71c8f9a418e"
+}
+```
 
 ### build the container
 this is the container that will be called from other apps
