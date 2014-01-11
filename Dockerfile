@@ -6,6 +6,7 @@ RUN apt-get update
 RUN apt-get -y install nodejs
 
 # python
+# already done above
 
 # ruby
 RUN apt-get -y install ruby1.9.3
