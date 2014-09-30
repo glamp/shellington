@@ -1,8 +1,8 @@
 {
   "name": "shellington",
   "description": "An API for embedding terminal shells in your browser",
-  "version": "0.0.2",
-  "private": true,
+  "version": "0.0.3",
+  "private": false,
   "scripts": {
     "start": "coffee ./src/cli.coffee"
   },

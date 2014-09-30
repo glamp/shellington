@@ -1,13 +1,10 @@
-/**
- * Module dependencies.
- */
-
 var express = require('express')
   , http = require('http')
   , path = require('path')
   , color = require('colors')
   , uuid = require('uuid')
-  , delim = new Buffer(1).toString()  // not sure if this works
+  // TODO: just realized this isn't doing shit
+  , delim = new Buffer(1).toString()  
   , _ = require('underscore')
   , WebSocketServer = require('ws').Server
   , child_process = require("child_process")
@@ -54,7 +51,8 @@ module.exports = function(lang) {
   } else {
     child = spawn(command, [commandArgs, delim]);
   }
-  child.stdin.write(JSON.stringify({"code": ""}) + "\n");
+  // wake up the subprocess
+  child.stdin.write(JSON.stringify({"code": ""}) + '\n');
 
   sendToProcessServer = function(data) {
     var data = JSON.stringify(data);
@@ -64,6 +62,7 @@ module.exports = function(lang) {
   var chunk = "";
   child.stdout.on("data", function(data) {
     chunk += data;
+    // buffer the data
     while (chunk.indexOf(delim) > 0) {
       var idx = chunk.indexOf(delim);
       var result = chunk.slice(0, idx);
@@ -78,13 +77,14 @@ module.exports = function(lang) {
   });
 
   child.stderr.on("data", function(data) {
+    // TODO: maybe do something cool with this on the client side?
     console.log(data.toString().cyan);
   });
 
   completionCallbacks = {};
 
   app.get('/', function(req, res) {
-    res.send({ status: "up" });
+    res.render("demo");
   });
 
   app.get('/demo', function(req, res) {
@@ -96,9 +96,22 @@ module.exports = function(lang) {
       , autocomplete = req.body.autocomplete || false
       , data = { code: code, _id: uuid.v4(), autocomplete: autocomplete };
 
+    /* as you might have noticed, we don't actually respond to the client in 
+     * this function (blasphemy, I know). what we actually do is create a 
+     * "completionCallback" which is just a function that will ultimately return
+     * JSON (`res.json`) to the client. the `_id` is *CRITICAL* here because 
+     * the child that's reading stdout (see above) will use it to figure out
+     * which callback to call.
+     */
     completionCallbacks[data._id] = function(data) {
       res.json(data);
     }
+    /*
+     * This sends the data on it's merry way to the server. this is the first
+     * contact that the data will have with the child process. ultimately it'll
+     * be spit back out into stdout and we'll send it back to the appropriate
+     * completionCallback
+     */
     sendToProcessServer(data);
   });
   
@@ -106,7 +119,7 @@ module.exports = function(lang) {
     console.log('Express server listening on port ' + app.get('port'));
   });
 
-  var wss = new WebSocketServer({server: server});
+  var wss = new WebSocketServer({ server: server });
   wss.on("connection", function (ws) {
     console.log("new client connection!");
     ws.on("message", function(data) {

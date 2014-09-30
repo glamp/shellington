@@ -21,4 +21,4 @@ Example:
 options = docopt doc
 
 # defaults to python
-server options["<lang>"] || "python"
+server options["<lang>"]
