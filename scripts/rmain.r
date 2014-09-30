@@ -4,7 +4,7 @@ library(evaluate)
 
 f <- file("stdin")
 delim <- commandArgs()[6]
-write(paste("Deliminter is: ", delim), stderr())
+write(paste("Delim is: ", delim), stderr())
 
 open(f)
 while(length(line <- readLines(f,n=1)) > 0) {
